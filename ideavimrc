@@ -10,9 +10,6 @@ set wrapscan  "环形搜索
 nnoremap <leader>/ :nohl<CR>
 
 
-
-
-
 """""""""""""""""""""""""""""""""""""""""""" 通用设置
 syntax on  " 语法高亮显示
 set nocompatible " 不使用兼容模式
@@ -50,38 +47,37 @@ set showmatch "显示匹配的括号"
 let mapleader=" "
 set easymotion
 "sneak 插件 s/S {char}{char} 跳转
-set sneak
+"set sneak
 
 " 启用vim surround功能
 set surround
-
+set easymotion
 
 "为IdeaVim插件增加自动切换为英文输入法的功能
 "set keep-english-in-normal
+
+Plug 'preservim/nerdtree`
+map <c-t> :NERDTree<CR>
 
 """"""""""""""""""""""""""""""""""""""""""" ideavim 插件配置 结束
 
 
 """"""""""""""""""""""""""""""""""""""""""" idea的动作映射"
-"idea的动作映射 https://jb.gg/abva4t
+"idea的动作映射 https://github.com/JetBrains/ideavim#executing-ide-actions
 
-" 撤回
-nnoremap U <C-r>
+
+nnoremap U <C-r>  " 撤回
 " 复制到行尾
 nnoremap Y y$
-"格式化代码 \r
-map \r <Action>(ReformatCode)
-" Debug
-map <leader>d <Action>(Debug)
 
-"运行当前文件
-nnoremap <leader>r :action RunClass<CR>
-"改变量名
-nnoremap <leader>s :action RenameElement<CR>
-"新建一个文件
-nnoremap <leader>n :action NewFile<CR>
-"Ctrl + Shift + I查看快速定义
-nnoremap <leader>v :action QuickImplementations<CR>
+map \r <Action>(ReformatCode)  "格式化代码 \r
+
+map <leader>d <Action>(Debug) " Debug
+
+nnoremap <leader>r :action RunClass<CR> "运行当前文件
+nnoremap <leader>s :action RenameElement<CR> "改变量名
+nnoremap <leader>n :action NewFile<CR> "新建一个文件
+nnoremap <leader>v :action QuickImplementations<CR> "Ctrl + Shift + I查看快速定义
 noremap <leader>gc :action GotoClass<CR>
 
 "noremap / :action Find<CR>
@@ -91,10 +87,12 @@ noremap <leader>gc :action GotoClass<CR>
 
 
 " 后退
-noremap <leader>b :action Back<CR>
+nnoremap [[ :action Back<CR>
+
 "前进"
-noremap <leader>f :action Forward<CR>
-" 弹出输入框，可以跳到指定类
+
+noremap  ]] :action Forward<CR>
+ " 弹出输入框，可以跳到指定类
 nnoremap <Space>gc :action GotoClass<CR>
 " 弹出输入框，跳转到指定操作
 nnoremap <Space>ga :action GotoAction<CR>
@@ -102,30 +100,32 @@ nnoremap <Space>ga :action GotoAction<CR>
 nnoremap <leader>gd :action GotoDeclaration<CR>
 " 跳转到实现
 nnoremap <Space>gi :action GotoImplementation<CR>
-" 跳转到指定的文件
-nnoremap <Space>gf :action GotoFile<CR>
-" 跳转到方法的声明
-nnoremap <Space>gs :action GotoSuperMethod<CR>
-" 跳转到测试
-nnoremap <Space>gT :action GotoTest<CR>
-" 跳转到变量的声明
-nnoremap <Space>gS :action GotoSymbol<CR>
-noremap <leader>fs :action FileStructurePopup<CR>
+nnoremap <Space>gf :action GotoFile<CR> " 跳转到指定的文件
+nnoremap <Space>gs :action GotoSuperMethod<CR> " 跳转到方法的声明
+"nnoremap <Space>gT :action GotoTest<CR> " 跳转到测试
+nnoremap <Space>gS :action GotoSymbol<CR> " 弹出输入框，跳转到符号
+noremap <leader>fs :action FileStructurePopup<CR> " 弹出输入框 跳转到文件结构  不是command +7
 "noremap <leader>v :action VimVisualToggleBlockMode<CR>
+nnoremap <Space>fu :action FindUsages<CR> " 查找使用
 
-" 查找使用
-nnoremap <Space>fu :action FindUsages<CR>
-" 显示使用
-nnoremap <Space>su :action ShowUsages<CR>
+nnoremap <Space>su :action ShowUsages<CR> " 显示使用
+nnoremap <Space><TAB>:action Switcher<CR> " 窗口切换
 
+"nnoremap  :action ShowErrorDescription  鼠标悬停在错误页面上的效果
+"QuickJavaDoc F1键 文档
+
+" 参考https://www.jianshu.com/p/fd82bbed2c25
+"https://juejin.cn/post/7086003739718811661
+"http://thoreauz.com/2019/04/21/ideavim/"
+"https://gist.github.com/zchee/9c78f91cc5ad771c1f5d"
 " gh=go head, 映射vim中的^
 nnoremap gh ^
 " gl=go last，映射vim中的$
 nnoremap gl $
 
 " Window operation
-nnoremap <Space>ww <C-W>w
-nnoremap <Space>wc <C-W>c
+nnoremap <Space>ww <C-W>w  "切换窗口"
+nnoremap <Space>wc <C-W>c  "关闭窗口"
 nnoremap <Space>wj <C-W>j
 nnoremap <Space>wk <C-W>k
 nnoremap <Space>wh <C-W>h
@@ -140,7 +140,7 @@ nnoremap <Space>wv <C-W>vf   " 垂直分屏
 
 
 
-"代码折叠 zc/zo 关闭 打开
+"代ction Back码折叠 zc/zo 关闭 打开
 "全选：ggvG
 "个字两换符位置：xp
 "复制一行：yyp
@@ -203,6 +203,7 @@ nnoremap <Space>wv <C-W>vf   " 垂直分屏
 ":inoremap <a-k> <Down>
 ":inoremap <a-l> <Right>
 ":nnoremap <ESC> :action ReformatCode<CR>
+
 
 
 
