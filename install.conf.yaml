@@ -1,0 +1,34 @@
+- clean: ['~']
+
+- link:
+    ~/.alias: alias 
+    ~/.bash_profile: bash_profile
+    ~/.gitconfig: gitconfig
+    ~/.ssh/config:
+        path: ssh/config
+        create: true
+    ~/.zprofile: zprofile
+    ~/.zshenv: zshenv
+    ~/.zshrc: zshrc
+    ~/.config: config
+    ~/.cargo/config:
+        path: cargo/config
+        create: false
+          #~/.tmux: tmux
+          #~/.tmux.config: 
+          #path: tmux/.tmux.conf
+          # create: false
+    ~/.tmux.conf.local:
+        path: tmux/tmux.conf.local
+        create: false
+    ~/.tmux/tmux.conf:
+        path: tmux/tmux.conf
+        create: true
+
+        
+    ~/.p10k.zsh: p10k.zsh
+      #~/.vim: SpaceVim
+      #~/.SpaceVim.d/: SpaceVim.d/
+    ~/.vim:
+        path: vim/
+        create: false

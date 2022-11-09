@@ -1,0 +1,27 @@
+
+alias src='source ~/.zshrc'
+alias vrc='nvim ~/.zshrc'
+alias j='z'
+alias gpll='git clone --depth=1'
+
+# 防止 copy 的时候覆盖已存在的文件, 带上 i 选项，文件已存在的时候，会提示，需要确认才能 copy
+alias cp="cp -i"
+# 删除文件的时候询问
+alias rm='rm -i'
+
+alias grep='ag'  # 需要安装ag
+
+# brew 查看软件及其依赖
+alias brewlist="brew leaves | xargs brew deps --include-build --tree"
+
+alias kth="kitty +kitten themes"
+alias find='fd'
+
+
+alias vim='/opt/homebrew/bin/vim'
+alias vvr='vim ~/.vim/vimrc'
+
+alias vaa='vim ~/.alias'
+
+alias ra='ranger'
+alias mvim='exec -a mvim nvim -u "/Users/king/.dotfiles/config/nvim_self/init.vim" "$@"'

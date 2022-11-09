@@ -1,0 +1,14 @@
+#github
+Host github.com
+	HostName github.com
+	User git
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/id_rsa_github
+
+#company
+#输入公司ip端口，或者域名
+Host gitlab.com
+	HostName gitlab.miduchina.com
+	User git
+        PreferredAuthentications publickey
+	IdentityFile ~/.ssh/id_rsa_midu

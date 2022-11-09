@@ -1,0 +1,3 @@
+time="2022-08-13T11:02:49+08:00" level=error msg="External controller listen error: listen tcp 127.0.0.1:58636: bind: address already in use"
+time="2022-08-13T11:02:50+08:00" level=warning msg="[CacheFile] can't open cache file: timeout"
+time="2022-08-13T11:02:50+08:00" level=error msg="Start Mixed(http+socks) server error: listen tcp :7890: bind: address already in use"

@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "coc-css": ">=2.0.0",
+    "coc-diagnostic": ">=0.23.4",
+    "coc-eslint": ">=1.5.8",
+    "coc-flutter-tools": ">=1.6.7",
+    "coc-gitignore": ">=0.0.4",
+    "coc-docker": ">=0.5.0",
+    "coc-html": ">=1.8.0",
+    "coc-java": ">=1.5.5",
+    "coc-jest": ">=1.1.5",
+    "coc-json": ">=1.7.0",
+    "coc-explorer": ">=0.25.4",
+    "coc-lists": ">=1.4.5",
+    "coc-omnisharp": ">=0.0.28",
+    "coc-prettier": ">=9.3.1",
+    "coc-import-cost": ">=1.0.1",
+    "coc-prisma": ">=0.11.0",
+    "coc-snippets": ">=3.1.4",
+    "coc-pyright": ">=1.1.275",
+    "coc-sourcekit": ">=0.0.3",
+    "coc-syntax": ">=1.2.4",
+    "coc-tasks": ">=0.3.0",
+    "coc-stylelint": ">=1.2.0",
+    "coc-translator": ">=1.9.4",
+    "coc-tsserver": ">=2.0.0",
+    "coc-vetur": ">=1.2.5",
+    "coc-vimlsp": ">=0.12.8",
+    "coc-yank": ">=1.2.1",
+    "coc-yaml": ">=1.9.0"
+  },
+  "lastUpdate": 1667659742540
+}

@@ -1,0 +1,111 @@
+variables:
+    architecture: "x64"
+
+jobs:
+    - job: "Lint"
+      timeoutInMinutes: 15
+      displayName: "Lint"
+      pool: { vmImage: "ubuntu-latest" }
+
+      variables:
+          python.version: "3.8"
+
+      steps:
+          - template: "templates/use_python.yml"
+
+          - script: |
+                python3 -m pip install -U flake8
+                python3 -m pip install -U git+https://github.com/karthiknadig/flake8reports
+            displayName: "Setup flake8"
+
+          - script: |
+                python3 -m flake8 --format=junit --output-file=$(Build.ArtifactStagingDirectory)/lint-flake8.xml
+            displayName: "Run flake8"
+
+          - task: "PublishTestResults@2"
+            condition: "always()"
+            inputs:
+                testRunTitle: "$(Agent.JobName)"
+                testResultsFiles: "lint-*.xml"
+                searchFolder: "$(Build.ArtifactStagingDirectory)"
+            displayName: "Publish linting results"
+
+    - job: "Test_Linux"
+      timeoutInMinutes: 30
+      displayName: "Tests - Linux"
+      pool: { vmImage: "ubuntu-latest" }
+
+      strategy:
+          matrix:
+              py37:
+                  python.version: "3.7"
+              py38:
+                  python.version: "3.8"
+              py39:
+                  python.version: "3.9"
+              py310:
+                  python.version: "3.10"
+
+      steps:
+          - script: |
+                sudo apt-get update
+                sudo apt-get --yes install gdb
+                sudo sysctl kernel.yama.ptrace_scope=0
+            displayName: "Setup gdb"
+
+          - template: "templates/use_python.yml"
+
+          - template: "templates/run_tests.yml"
+
+    - job: "Test_MacOS"
+      timeoutInMinutes: 30
+      displayName: "Tests - macOS"
+      pool: { vmImage: "macOS-11" }
+
+      strategy:
+          matrix:
+              py37:
+                  python.version: "3.7"
+              py38:
+                  python.version: "3.8"
+              py39:
+                  python.version: "3.9"
+              py310:
+                  python.version: "3.10"
+
+      steps:
+          - script: |
+                ulimit -Sn 8192
+            displayName: "Increase file descriptor limit"
+
+          - template: "templates/use_python.yml"
+
+          - script: |
+                python -m ensurepip --user
+            displayName: "Bootstrap pip"
+
+          - template: "templates/run_tests.yml"
+
+    - job: "Test_Windows"
+      timeoutInMinutes: 40
+      displayName: "Tests - Windows"
+      pool: { vmImage: "windows-latest" }
+
+      strategy:
+          matrix:
+              py37:
+                  python.version: "3.7"
+              py38:
+                  python.version: "3.8"
+              py39:
+                  python.version: "3.9"
+              py310:
+                  python.version: "3.10"
+              py39_32:
+                  python.version: "3.9"
+                  architecture: "x86"
+
+      steps:
+          - template: "templates/use_python.yml"
+
+          - template: "templates/run_tests.yml"

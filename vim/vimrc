@@ -1,0 +1,173 @@
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin()
+Plug 'puremourning/vimspector'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
+Plug 'lervag/vimtex'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'ferrine/md-img-paste.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
+
+let g:vimspector_enable_mappings = 'HUMAN'
+let mapleader = "\<space>" 
+
+"function! s:read_template_into_buffer(template)
+"" has to be a function to avoid the extra space fzf#run insers otherwise
+"execute ‘0r ~/.vim/vimspector_json/’.a:template
+"endfunction
+"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+"\ ‘source’: ‘ls -1 ~/.vim/vimspector_json’,
+"\ ‘down’: 20,
+"\ ‘sink’: function(‘read_template_into_buffer’)
+"\ })
+"" %:p:h返回当前调试源文件所在的目录
+"" 如果没有%:p:h时.vimspector.json会被默认存到vim/nvim启动目录
+"" ~$nvim test/main.cpp 没有%:p:h时则返回~/.vimspector.json 如果有 %:p:h/.vimspector.json返回~/test/.vimspector.json
+"noremap vs :tabe %:p:h/.vimspector.json:LoadVimSpectorJsonTemplate
+"sign define vimspectorBP text=🛑 texthl=Normal
+"sign define vimspectorBPDisabled text=🚫 texthl=Normal
+"sign define vimspectorPC text=👉 texthl=SpellBad
+
+
+
+set nu                      " 显示行号
+set tabstop=4               " 设置软制表符宽度为4
+set softtabstop=4           " 设置软制表符宽度为4
+set shiftwidth=4            " 设置缩进的空格数为4
+set autoindent              " 设置自动缩进：即每行的缩进值与上一行相等
+set cursorline              " 突出显示当前行
+set expandtab               " 空格代替制表符
+set showmatch               " 光标遇到圆括号、方括号、大括号时，自动高亮对应的另一个圆括号、方括号和大括号
+set ruler                   " 在状态栏显示光标的当前位置（位于哪一行哪一列）
+set guifont=Consolas:h15    " 设置字体和字体大小
+set nobackup                " 取消备份文件
+                            " 默认情况下，文件保存时，会额外创建一个备份文件，它的文件名是在原文件名的末尾，再添加一个波浪号~
+setlocal noswapfile         " 不创建交换文件。交换文件主要用于系统崩溃时恢复文件，文件名的开头是.、结尾是.swp
+set noundofile              " 取消生成un文件
+set hlsearch                " 设置高亮显示搜索字符串
+set showmode                " 在底部显示，当前处于命令模式还是插入模式
+set showcmd                 " 命令模式下，在底部显示，当前键入的指令。比如输入快捷键将在底部显示具体命令
+set t_Co=256                " 启用256色
+set noerrorbells            " 出错时不要发出响声
+" 高亮显示
+syntax on
+syntax enable
+
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf.vim'
+let g:vimspector_base_dir=expand('~/.vim/.vimspectorjson')
+function! s:read_template_into_buffer(template)
+    " has to be a function to avoid the extra space fzf#run insers otherwise
+    execute '0r ~/.vim/.vimspectorjson/'.a:template
+endfunction
+command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+            \   'source': 'ls -1 ~/.vim/.vimspectorjson',
+            \   'down': 20,
+            \   'sink': function('<sid>read_template_into_buffer')
+            \ })
+noremap <leader>db :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+sign define vimspectorBP text=☛ texthl=Normal
+sign define vimspectorBPDisabled text=☞ texthl=Normal
+sign define vimspectorPC text=¶ texthl=SpellBad
+
+"let g:vimspector_configuration = {
+"            \  "configurations": {
+"            \    "run current script": {
+"            \      "adapter": "debugpy",
+"            \      "variables": {
+"            \        "python": {
+"            \          "shell": "/bin/bash -c 'test -n \"$${VIRTUAL_ENV}\" && echo $${VIRTUAL_ENV}/bin/python || echo python3'"
+"            \        }
+"            \      },
+"            \      "configuration": {
+"            \        "request": "launch",
+"            \        "type": "python",
+"            \        "cwd": "${CWD:${workspaceRoot\\}}",
+"            \        "program": "${file}",
+"            \        "console": "integratedTerminal",
+"            \        "args": [ "*${args}" ],
+"            \        "python": "${python}"
+"            \      },
+"            \      "breakpoints": {
+"            \        "exception": {
+"            \          "raised": "N",
+"            \          "uncaught": ""
+"            \        }
+"            \      }
+"            \    },
+"            \    "attach": {
+"            \      "adapter": "multi-session",
+"            \      "configuration": {
+"            \        "request": "attach"
+"            \      },
+"            \      "breakpoints": {
+"            \        "exception": {
+"            \          "raised": "N",
+"            \          "uncaught": ""
+"            \        }
+"            \      }
+"            \    }
+"            \  }
+"            \}
+"
+
+
+
+"Plug 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
+"o
+
+
+"let g:vimspector_configuration = {
+"            \{
+"            \  "adapters": {
+"            \    "debugpy": {
+"            \      "command": [
+"            \        "python",
+"            \        "-m",
+"            \        "debugpy.adapter"
+"            \      ],
+"            \      "name": "debugpy",
+"            \      "configuration": {
+"            \        "python": "python"
+"            \      }
+"            \    }
+"            \  },
+"            \  "configurations": {
+"            \    "run - debugpy": {
+"            \      "adapter": "debugpy",
+"            \      "configuration": {
+"            \        "request": "launch",
+"            \        "type": "python",
+"            \        "cwd": "${workspaceRoot}",
+"            \        "program": "${file}",
+"            \        "console": "integratedTerminal"
+"            \      },
+"            \      "breakpoints": {
+"            \        "exception": {
+"            \          "raised": "N",
+"            \          "uncaught": ""
+"            \        }
+"            \      }
+"            \    }
+"            \  }
+"            \}
+"            \}
+

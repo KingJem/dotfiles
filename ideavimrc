@@ -1,0 +1,208 @@
+
+
+" 搜索设置
+set incsearch
+set hlsearch
+set ignorecase "搜索时智能匹配大小写
+set smartcase
+set wrapscan  "环形搜索
+"关闭搜索高亮
+nnoremap <leader>/ :nohl<CR>
+
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""" 通用设置
+syntax on  " 语法高亮显示
+set nocompatible " 不使用兼容模式
+set number relativenumber  "显示行号  显示相对行号
+set ruler    "显示光标所在位置的行号和列号
+set wrap        "自动折行
+set shiftwidth=4  "移位操作 >> 或 << 的缩进长度（以空格的数量表示）
+set tabstop=4   "设置文件里的制表符 (TAB) 的宽度（以空格的数量表示
+set softtabstop=4 
+set smartindent
+set expandtab      "将tab替换为相应数量空格
+set backspace=2
+set co=5   " 上下滚动的时候保留5行
+set cursorline     "突出显示当前行
+set nobackup  " 禁止创建备份文件
+set noswapfile " 禁止创建交换文件 .swp 开头
+set clipboard+=unnamed " Vim 的默认寄存器和系统剪贴板共享
+set showmode " 显示当前的模式
+set scrolloff=5 "光标距窗口上下保留 5 行
+set laststatus=2 "显示文件名、行号和列号
+set undofile "创建undo文件
+set noerrorbells "关闭错误响铃
+set showcmd "屏幕命令显示
+set showmode "当前所处的模式"
+set showmatch "显示匹配的括号"
+" 参考 https://linux265.com/news/3395.html 
+" 参考 http://t.zoukankan.com/fuhai0815-p-9443916.html
+
+
+"""""""""""""""""""""""""""""""""""""""""""" 通用设置 结束
+
+
+""""""""""""""""""""""""""""""""""""""""""" ideavim 插件配置
+"space是leader
+let mapleader=" "
+set easymotion
+"sneak 插件 s/S {char}{char} 跳转
+set sneak
+
+" 启用vim surround功能
+set surround
+
+
+"为IdeaVim插件增加自动切换为英文输入法的功能
+"set keep-english-in-normal
+
+""""""""""""""""""""""""""""""""""""""""""" ideavim 插件配置 结束
+
+
+""""""""""""""""""""""""""""""""""""""""""" idea的动作映射"
+"idea的动作映射 https://jb.gg/abva4t
+
+" 撤回
+nnoremap U <C-r>
+" 复制到行尾
+nnoremap Y y$
+"格式化代码 \r
+map \r <Action>(ReformatCode)
+" Debug
+map <leader>d <Action>(Debug)
+
+"运行当前文件
+nnoremap <leader>r :action RunClass<CR>
+"改变量名
+nnoremap <leader>s :action RenameElement<CR>
+"新建一个文件
+nnoremap <leader>n :action NewFile<CR>
+"Ctrl + Shift + I查看快速定义
+nnoremap <leader>v :action QuickImplementations<CR>
+noremap <leader>gc :action GotoClass<CR>
+
+"noremap / :action Find<CR>
+"noremap f :action AceAction<CR>
+"noremap F :action AceTargetAction<CR>
+
+
+
+" 后退
+noremap <leader>b :action Back<CR>
+"前进"
+noremap <leader>f :action Forward<CR>
+" 弹出输入框，可以跳到指定类
+nnoremap <Space>gc :action GotoClass<CR>
+" 弹出输入框，跳转到指定操作
+nnoremap <Space>ga :action GotoAction<CR>
+" 跳转到定义
+nnoremap <leader>gd :action GotoDeclaration<CR>
+" 跳转到实现
+nnoremap <Space>gi :action GotoImplementation<CR>
+" 跳转到指定的文件
+nnoremap <Space>gf :action GotoFile<CR>
+" 跳转到方法的声明
+nnoremap <Space>gs :action GotoSuperMethod<CR>
+" 跳转到测试
+nnoremap <Space>gT :action GotoTest<CR>
+" 跳转到变量的声明
+nnoremap <Space>gS :action GotoSymbol<CR>
+noremap <leader>fs :action FileStructurePopup<CR>
+"noremap <leader>v :action VimVisualToggleBlockMode<CR>
+
+" 查找使用
+nnoremap <Space>fu :action FindUsages<CR>
+" 显示使用
+nnoremap <Space>su :action ShowUsages<CR>
+
+" gh=go head, 映射vim中的^
+nnoremap gh ^
+" gl=go last，映射vim中的$
+nnoremap gl $
+
+" Window operation
+nnoremap <Space>ww <C-W>w
+nnoremap <Space>wc <C-W>c
+nnoremap <Space>wj <C-W>j
+nnoremap <Space>wk <C-W>k
+nnoremap <Space>wh <C-W>h
+nnoremap <Space>wl <C-W>l
+nnoremap <Space>ws <C-W>s
+nnoremap <Space>w- <C-W>-
+nnoremap <Space>w+ <C-W>+
+nnoremap <Space>w= <C-W>=
+
+nnoremap <Space>wv <C-W>vf   " 垂直分屏
+
+
+
+
+"代码折叠 zc/zo 关闭 打开
+"全选：ggvG
+"个字两换符位置：xp
+"复制一行：yyp
+"复制一行：yyp
+"调换两行位置：ddp
+"插入模式下到行尾继续输入（相当于End键）：Ctrl+o A 或 Ctrl+[ A
+"插入模式下到行首继续输入（相当于Home键）：Ctrl+o I 或 Ctrl+[ I
+"到类定义位置（适用于正确缩进的public，protected类） ：?^p回车
+"
+" https://javaforall.cn/186961.html
+"https://blog.csdn.net/weixin_33859844/article/details/91658609
+"https://github.com/JetBrains/ideavim#executing-ide-actions
+"https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
+"https://blog.csdn.net/kl28978113/article/details/53980440
+"https://gist.github.com/AlexPl292/50a3ff4cef1badcbb23436b22cbd3cf4"
+"https://blog.csdn.net/weixin_33859844/article/details/91658609"
+"https://zhuanlan.zhihu.com/p/404818431"
+"https://zhuanlan.zhihu.com/p/579636452"
+"https://www.jianshu.com/p/ddd56ceeb83d"
+
+""""""""""""""""""  特殊模式配置
+
+"" Normal + Visual
+"noremap # #zz
+"noremap * *zz
+"noremap w wzz
+"noremap W Wzz
+"noremap e ezz
+"noremap E Ezz
+"noremap b bzz
+"noremap B Bzz
+""noremap H Hzz
+""noremap L Lzz
+"noremap 0 0zz
+"noremap $ $zz
+"noremap ^ ^zz
+"noremap j jzz
+"noremap k kzz
+"noremap G Gzz
+"noremap u uzz
+"noremap ( (zz
+"noremap ) )zz
+"noremap { {zz
+"noremap } }zz
+"noremap [{ [{zz
+"noremap ]} ]}zz
+"noremap gd gdzz
+"
+"
+":noremap h i
+":noremap j h
+":noremap k j
+":noremap i k
+":noremap H I
+":noremap J H
+":noremap K J
+":noremap I K
+":inoremap <a-i> <Up>
+":inoremap <a-j> <Left>
+":inoremap <a-k> <Down>
+":inoremap <a-l> <Right>
+":nnoremap <ESC> :action ReformatCode<CR>
+
+
+
