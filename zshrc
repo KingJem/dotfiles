@@ -60,8 +60,7 @@ zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/tmux",   from:oh-my-zsh
 zplug "plugins/safe-paste",   from:oh-my-zsh
 zplug "plugins/last-working-dir",   from:oh-my-zsh
-zplug "plugins/osx",   from:oh-my-zsh
-zplug "plugins/vscode",   from:oh-my-zsh
+zplug "plugins/macosx",   from:oh-my-zsh
 zplug "plugins/z",   from:oh-my-zsh
 zplug "plugins/d",   from:oh-my-zsh
 zplug "plugins/extract",   from:oh-my-zsh
@@ -79,7 +78,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "lib/completion", from:oh-my-zsh
 zplug "plugins/man", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
-#zplug "junegunn/fzf"
+zplug "junegunn/fzf"
 #zplug "junegunn/fzf-bin", \
 #    from:gh-r, \
 #    as:command, \
