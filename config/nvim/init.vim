@@ -50,7 +50,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-surround' " 
 filetype plugin on
 Plug 'scrooloose/nerdcommenter'
-
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'elzr/vim-json'
@@ -222,5 +222,5 @@ let g:webdevicons_enable_airline_statusline = 1
 
 " which key 配置
 "
-" let g:mapleader="\<Space>"
+ let g:mapleader="\<Space>"
 

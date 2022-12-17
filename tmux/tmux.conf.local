@@ -488,8 +488,10 @@ bind -r ^l resizep -R 10 # to the right (prefix Ctrl+l)
 
 
 ## 其他杂项配置
-bind r source-file ~/.tmux.conf \; display-message "source-file ~/.tmux.conf done"  # 绑定重载 settings 的热键
+bind R source-file ~/.tmux.conf \; display-message "source-file ~/.tmux.conf done"  # 绑定重载 settings 的热键
 
+## 当前窗口弹出lazygit
+bind g display-popup -E -d "#{pane_current_path}" -w 100% -h 100% "lazygit" 
 
 
 ## 一些锦上添花的优化
@@ -541,6 +543,7 @@ set -g @continuum-save-interval '30'
 ########## 插件 ##########
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'sainnhe/tmux-fzf'
 
 # tmux-resurrect 插件，用于手动保存和恢复 tmux 环境信息。
 # 使用方式：按 PREFIX,Ctrl+s 保存 session，按 PREFIX,Ctrl+r 恢复 session
@@ -548,13 +551,24 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 # 使 tmux-resurrect 支持保存和恢复 tmux 中的 vim 会话:
 set -g @resurrect-strategy-vim 'session'  # 需要 VIM 先安装 https://github.com/tpope/vim-obsession 插件
 
+# 恢复tmux 的pane 信息
+set -g @resurrect-capture-pane-contents 'on'
+
+
 # tmux-continuum 插件。依赖: tmux>=1.9, bash, tmux-resurrect
 # 每隔15分钟自动保存 tmux 环境信息(不需要任何配置，默认就有)
 set -g @plugin 'tmux-plugins/tmux-continuum'
 # 使得机器启动时，自动启动 tmux server:
 set -g @continuum-boot 'on'  # This is only for Linux. For MacOSX, see: https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md
+set -g @continuum-boot-options 'kitty,fullscreen'  # tmux 自动启动全屏kitty
 # tmux server 启动时，自动加载上次保存的环境信息
 set -g @continuum-restore 'on'
+
+# tmux-fzf 快捷键
+
+TMUX_FZF_LAUNCH_KEY="C-t"
+
+
 
 
 # 初始化 tmux 插件管理器(保证这行在 ~/.tmux.conf 的非常靠后的位置)

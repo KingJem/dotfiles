@@ -28,24 +28,6 @@ call plug#end()
 let g:vimspector_enable_mappings = 'HUMAN'
 let mapleader = "\<space>" 
 
-"function! s:read_template_into_buffer(template)
-"" has to be a function to avoid the extra space fzf#run insers otherwise
-"execute ‘0r ~/.vim/vimspector_json/’.a:template
-"endfunction
-"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-"\ ‘source’: ‘ls -1 ~/.vim/vimspector_json’,
-"\ ‘down’: 20,
-"\ ‘sink’: function(‘read_template_into_buffer’)
-"\ })
-"" %:p:h返回当前调试源文件所在的目录
-"" 如果没有%:p:h时.vimspector.json会被默认存到vim/nvim启动目录
-"" ~$nvim test/main.cpp 没有%:p:h时则返回~/.vimspector.json 如果有 %:p:h/.vimspector.json返回~/test/.vimspector.json
-"noremap vs :tabe %:p:h/.vimspector.json:LoadVimSpectorJsonTemplate
-"sign define vimspectorBP text=🛑 texthl=Normal
-"sign define vimspectorBPDisabled text=🚫 texthl=Normal
-"sign define vimspectorPC text=👉 texthl=SpellBad
-
-
 
 set nu                      " 显示行号
 set tabstop=4               " 设置软制表符宽度为4
@@ -73,101 +55,6 @@ syntax enable
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
-let g:vimspector_base_dir=expand('~/.vim/.vimspectorjson')
-function! s:read_template_into_buffer(template)
-    " has to be a function to avoid the extra space fzf#run insers otherwise
-    execute '0r ~/.vim/.vimspectorjson/'.a:template
-endfunction
-command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-            \   'source': 'ls -1 ~/.vim/.vimspectorjson',
-            \   'down': 20,
-            \   'sink': function('<sid>read_template_into_buffer')
-            \ })
-noremap <leader>db :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 sign define vimspectorBP text=☛ texthl=Normal
 sign define vimspectorBPDisabled text=☞ texthl=Normal
 sign define vimspectorPC text=¶ texthl=SpellBad
-
-"let g:vimspector_configuration = {
-"            \  "configurations": {
-"            \    "run current script": {
-"            \      "adapter": "debugpy",
-"            \      "variables": {
-"            \        "python": {
-"            \          "shell": "/bin/bash -c 'test -n \"$${VIRTUAL_ENV}\" && echo $${VIRTUAL_ENV}/bin/python || echo python3'"
-"            \        }
-"            \      },
-"            \      "configuration": {
-"            \        "request": "launch",
-"            \        "type": "python",
-"            \        "cwd": "${CWD:${workspaceRoot\\}}",
-"            \        "program": "${file}",
-"            \        "console": "integratedTerminal",
-"            \        "args": [ "*${args}" ],
-"            \        "python": "${python}"
-"            \      },
-"            \      "breakpoints": {
-"            \        "exception": {
-"            \          "raised": "N",
-"            \          "uncaught": ""
-"            \        }
-"            \      }
-"            \    },
-"            \    "attach": {
-"            \      "adapter": "multi-session",
-"            \      "configuration": {
-"            \        "request": "attach"
-"            \      },
-"            \      "breakpoints": {
-"            \        "exception": {
-"            \          "raised": "N",
-"            \          "uncaught": ""
-"            \        }
-"            \      }
-"            \    }
-"            \  }
-"            \}
-"
-
-
-
-"Plug 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
-"o
-
-
-"let g:vimspector_configuration = {
-"            \{
-"            \  "adapters": {
-"            \    "debugpy": {
-"            \      "command": [
-"            \        "python",
-"            \        "-m",
-"            \        "debugpy.adapter"
-"            \      ],
-"            \      "name": "debugpy",
-"            \      "configuration": {
-"            \        "python": "python"
-"            \      }
-"            \    }
-"            \  },
-"            \  "configurations": {
-"            \    "run - debugpy": {
-"            \      "adapter": "debugpy",
-"            \      "configuration": {
-"            \        "request": "launch",
-"            \        "type": "python",
-"            \        "cwd": "${workspaceRoot}",
-"            \        "program": "${file}",
-"            \        "console": "integratedTerminal"
-"            \      },
-"            \      "breakpoints": {
-"            \        "exception": {
-"            \          "raised": "N",
-"            \          "uncaught": ""
-"            \        }
-"            \      }
-"            \    }
-"            \  }
-"            \}
-"            \}
-

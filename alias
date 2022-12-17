@@ -25,3 +25,4 @@ alias vaa='vim ~/.alias'
 
 alias ra='ranger'
 alias mvim='exec -a mvim nvim -u "/Users/king/.dotfiles/config/nvim_self/init.vim" "$@"'
+

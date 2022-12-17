@@ -28,4 +28,6 @@ export PATH="$PNPM_HOME:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH=/Users/king/.local/bin:$PATH
 export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
+export PATH="/opt/homebrew/opt/mysql-client@5.7/bin:$PATH"
+export EDITOR=vim
 

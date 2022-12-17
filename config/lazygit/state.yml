@@ -1,9 +1,13 @@
 lastupdatecheck: 0
 recentrepos:
+- /Users/king/PycharmProjects/scrapy-redis-gne
+- /Users/king/.fzf
+- /Users/king/.dotfiles
 - /Users/king/PycharmProjects/wuyou_outnet_spider
 - /Users/king/.oh-my-zsh
 - /Users/king/clone/shadowsocksr
 - /Users/king/.config/jgit
 startuppopupversion: 5
-customcommandshistory: []
+customcommandshistory:
+- q
 hidecommandlog: false
