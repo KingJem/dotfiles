@@ -78,18 +78,10 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "lib/completion", from:oh-my-zsh
 zplug "plugins/man", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "junegunn/fzf"
-#zplug "junegunn/fzf-bin", \
-#    from:gh-r, \
-#    as:command, \
-#    rename-to:fzf, \
-#    use:"*linux*amd64*"
 
-
-
-source $ZPLUG_HOME/repos/junegunn/fzf/shell/completion.zsh
-source $ZPLUG_HOME/repos/junegunn/fzf/shell/key-bindings.zsh
-
+# fzf 使用git 方式安装到家目录
+# 加载插件
+autoload -U compinit
 
 
 
@@ -109,6 +101,7 @@ zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
 # 给tmux 设置popup
 # https://www.liuvv.com/p/1104a363.html#3-fzf-tmux
 
@@ -120,28 +113,5 @@ if [[ -n $TMUX_PANE ]] && (( $+commands[tmux] )) && (( $+commands[fzfp] )); then
 fi
 
 
-# Modified version where you can press
-#   - CTRL-O to open with `open` command,
-#   - CTRL-E or Enter key to open with the $EDITOR
-fo() {
-  IFS=$'\n' out=("$(fzfp --preview 'cat {}' --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
-  key=$(head -1 <<< "$out")
-  file=$(head -2 <<< "$out" | tail -1)
-  if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
-  fi
-}
 
-#find-in-file - usage: fif <searchTerm>
-
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzfp +m) &&
-  cd "$dir"
-}
-
-
-export FZF_TMUX_OPTS="-p"
-export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 

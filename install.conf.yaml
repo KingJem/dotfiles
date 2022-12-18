@@ -32,3 +32,8 @@
     ~/.vim:
         path: vim/
         create: false
+
+    ~/.fzf/bin/fzfp:
+        path: fzfp 
+        create: false
+    
