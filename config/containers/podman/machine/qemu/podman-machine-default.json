@@ -39,7 +39,7 @@
   "-virtfs",
   "local,path=/Users/king,mount_tag=vol0,security_model=mapped-xattr",
   "-drive",
-  "if=virtio,file=/Users/king/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20221211.2.0-qemu.aarch64.qcow2"
+  "if=virtio,file=/Users/king/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230205.2.0-qemu.aarch64.qcow2"
  ],
  "Rootful": false,
  "UID": 501,
@@ -48,7 +48,7 @@
  },
  "ImageStream": "testing",
  "ImagePath": {
-  "Path": "/Users/king/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20221211.2.0-qemu.aarch64.qcow2"
+  "Path": "/Users/king/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230205.2.0-qemu.aarch64.qcow2"
  },
  "Mounts": [
   {
@@ -80,9 +80,9 @@
  "DiskSize": 100,
  "Memory": 2048,
  "IdentityPath": "/Users/king/.ssh/podman-machine-default",
- "Port": 51330,
+ "Port": 59361,
  "RemoteUsername": "core",
  "Starting": false,
- "Created": "2022-12-17T08:32:30.962312+08:00",
- "LastUp": "2022-12-17T08:32:30.962312+08:00"
+ "Created": "2023-02-13T13:23:46.075758+08:00",
+ "LastUp": "2023-02-13T13:23:46.075758+08:00"
 }

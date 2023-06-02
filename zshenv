@@ -1,4 +1,5 @@
 . "$HOME/.cargo/env"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
 export PATH="/Users/king/opt/miniconda3/bin:/Users/king/opt/nvim/bin:/opt/homebrew/Cellar/vim/8.2.5150_1/bin:$PATH"
@@ -30,4 +31,10 @@ export PATH=/Users/king/.local/bin:$PATH
 export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
 export PATH="/opt/homebrew/opt/mysql-client@5.7/bin:$PATH"
 export EDITOR=vim
+#export BETTER_EXCEPTIONS=1
+export PATH=~/.fzf/bin:$PATH
+#export https_proxy=http://127.0.0.1:1080 http_proxy=http://127.0.0.1:1080 all_proxy=socks5://127.0.0.1:1080                                                                                                                   
+export PATH="$PATH:$KOTLIN_HOME/bin"
+export PYCURL_SSL_LIBRARY=openssl
+export NODE_PATH="/usr/local/lib/node_modules"
 

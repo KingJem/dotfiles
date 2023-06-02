@@ -1,3 +1,8 @@
+Host *
+HostkeyAlgorithms +ssh-rsa
+PubkeyAcceptedKeyTypes +ssh-rsa
+
+
 #github
 Host github.com
 	HostName github.com
@@ -10,5 +15,14 @@ Host github.com
 Host gitlab.com
 	HostName gitlab.miduchina.com
 	User git
-        PreferredAuthentications publickey
+    PreferredAuthentications publickey
 	IdentityFile ~/.ssh/id_rsa_midu
+
+
+# vultr 
+#  ~/.ssh/id_rsa root@149.28.215.214
+Host vultr
+    HostName 149.28.215.214
+    User root
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa_midu

@@ -48,13 +48,13 @@ set showmode                " 在底部显示，当前处于命令模式还是�
 set showcmd                 " 命令模式下，在底部显示，当前键入的指令。比如输入快捷键将在底部显示具体命令
 set t_Co=256                " 启用256色
 set noerrorbells            " 出错时不要发出响声
+set backspace=indent,eol,start 
+
 " 高亮显示
 syntax on
 syntax enable
 
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-Plug 'junegunn/fzf.vim'
 sign define vimspectorBP text=☛ texthl=Normal
 sign define vimspectorBPDisabled text=☞ texthl=Normal
 sign define vimspectorPC text=¶ texthl=SpellBad

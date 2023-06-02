@@ -8,21 +8,25 @@ alias gpll='git clone --depth=1'
 alias cp="cp -i"
 # 删除文件的时候询问
 alias rm='rm -i'
-
 alias grep='ag'  # 需要安装ag
 
 # brew 查看软件及其依赖
 alias brewlist="brew leaves | xargs brew deps --include-build --tree"
-
 alias kth="kitty +kitten themes"
 alias find='fd'
-
-
 alias vim='/opt/homebrew/bin/vim'
 alias vvr='vim ~/.vim/vimrc'
-
 alias vaa='vim ~/.alias'
-
 alias ra='ranger'
-alias mvim='exec -a mvim nvim -u "/Users/king/.dotfiles/config/nvim_self/init.vim" "$@"'
-
+alias p='tmux popup -w 60% -h 60%' 
+alias pp='tmux popup -w 90% -h 90%  "tmux attach -t popup || tmux new -s popup"'
+#alias ls='lsd'
+alias t='ts '
+alias jp='expect ~/tmp/login.exp'
+alias du='dust'
+alias ps='procs'
+alias pn='pnpm'
+alias npm='pnpm'
+alias code='oathtool --totp --base32 "NBAY2XZKLJNQ7T2B"'
+alias add='bash /Users/king/code/scripts/add_code.sh'
+alias push=' git stash ;git pull origin develop --rebase;git push origin develop;git stash pop '

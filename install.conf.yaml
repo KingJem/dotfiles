@@ -33,7 +33,6 @@
         path: vim/
         create: false
 
-    ~/.fzf/bin/fzfp:
-        path: fzfp 
-        create: false
-    
+    ~/.fzf/bin/fzfp: fzfp
+    ~/.fzf.zsh: fzf.zsh
+        

@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
+
 __conda_setup="$('/Users/king/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -54,6 +55,7 @@ zstyle ':completion:*' rehash true
 
 
 
+
 # > === zplug 插件安装 ===
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "plugins/git",   from:oh-my-zsh
@@ -78,14 +80,15 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "lib/completion", from:oh-my-zsh
 zplug "plugins/man", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
-
+zplug "kevinhwang91/fzf-tmux-script",\
+    as:command, \
+    use:"popup/fzfp",\
+    rename-to:fzfp
 # fzf 使用git 方式安装到家目录
 # 加载插件
-autoload -U compinit
 
-
-
-
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug load
 
 # > zplug 安装检查
 if ! zplug check --verbose; then
@@ -96,10 +99,15 @@ if ! zplug check --verbose; then
 fi
 
 # > zplug 安装
-zplug load
+
+CASE_SENSITIVE="false"
+setopt MENU_COMPLETE
+setopt no_list_ambiguous
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu yes select
+source ~/.fzf.zsh
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # 给tmux 设置popup
@@ -113,5 +121,45 @@ if [[ -n $TMUX_PANE ]] && (( $+commands[tmux] )) && (( $+commands[fzfp] )); then
 fi
 
 
+###-begin-pm2-completion-###
+### credits to npm for the completion file model
+#
+# Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
+#
 
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
 
+if type complete &>/dev/null; then
+  _pm2_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           pm2 completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -o default -F _pm2_completion pm2
+elif type compctl &>/dev/null; then
+  _pm2_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       pm2 completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _pm2_completion + -f + pm2
+fi
+#**##-end-pm2-completion-###
+
+unset SSH_AUTH_SOCK
