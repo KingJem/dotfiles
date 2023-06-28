@@ -37,4 +37,4 @@ export PATH=~/.fzf/bin:$PATH
 export PATH="$PATH:$KOTLIN_HOME/bin"
 export PYCURL_SSL_LIBRARY=openssl
 export NODE_PATH="/usr/local/lib/node_modules"
-
+export TLDR_AUTO_UPDATE_DISABLED=1

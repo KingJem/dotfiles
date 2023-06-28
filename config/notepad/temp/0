@@ -1,0 +1,5 @@
+
+
+
+
+frida -H 10.1.7.115:27042  -l .\facebook-ssl-pinning-bypass.js -f com.facebook.katana --no-pause

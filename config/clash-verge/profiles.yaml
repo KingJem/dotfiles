@@ -1,0 +1,32 @@
+# Profiles Config for Clash Verge
+
+current: r77lCFcDMoJk
+chain: null
+valid:
+- dns
+items:
+- uid: r77lCFcDMoJk
+  type: remote
+  name: Remote File
+  file: r77lCFcDMoJk.yaml
+  url: https://sub1.smallstrawberry.com/api/v1/client/subscribe?token=044bd50a6769be637bc27a07c75712ab
+  selected:
+  - name: 一元机场
+    now: 🇺🇸美国 03 | 专线
+  extra:
+    upload: 83374084
+    download: 1474973607
+    total: 536870912000
+    expire: 1716176379
+  updated: 1687835465
+  option:
+    update_interval: 1440
+- uid: laAs2ca4pf4r
+  type: local
+  name: Remote File
+  file: laAs2ca4pf4r.yaml
+  desc: ''
+  selected:
+  - name: GLOBAL
+    now: Proxy
+  updated: 1687597386

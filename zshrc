@@ -75,7 +75,6 @@ zplug "plugins/history-substring-search",  from:oh-my-zsh
 zplug "plugins/command-not-found",   from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "voronkovich/gitignore.plugin.zsh"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "lib/completion", from:oh-my-zsh
 zplug "plugins/man", from:oh-my-zsh
@@ -121,12 +120,6 @@ if [[ -n $TMUX_PANE ]] && (( $+commands[tmux] )) && (( $+commands[fzfp] )); then
 fi
 
 
-###-begin-pm2-completion-###
-### credits to npm for the completion file model
-#
-# Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
-#
-
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
 export COMP_WORDBREAKS
@@ -163,3 +156,8 @@ fi
 #**##-end-pm2-completion-###
 
 unset SSH_AUTH_SOCK
+
+
+## 设置自动生成 gitignore
+function gi() { curl -sL https://www.gitignore.io/api/\$@ ;}
+

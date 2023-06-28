@@ -1,32 +1,34 @@
 
 alias src='source ~/.zshrc'
-alias vrc='nvim ~/.zshrc'
+alias vrc='vim ~/.zshrc'
 alias j='z'
 alias gpll='git clone --depth=1'
 
 # 防止 copy 的时候覆盖已存在的文件, 带上 i 选项，文件已存在的时候，会提示，需要确认才能 copy
 alias cp="cp -i"
-# 删除文件的时候询问
-alias rm='rm -i'
 alias grep='ag'  # 需要安装ag
-
 # brew 查看软件及其依赖
 alias brewlist="brew leaves | xargs brew deps --include-build --tree"
 alias kth="kitty +kitten themes"
 alias find='fd'
 alias vim='/opt/homebrew/bin/vim'
-alias vvr='vim ~/.vim/vimrc'
 alias vaa='vim ~/.alias'
-alias ra='ranger'
 alias p='tmux popup -w 60% -h 60%' 
 alias pp='tmux popup -w 90% -h 90%  "tmux attach -t popup || tmux new -s popup"'
-#alias ls='lsd'
 alias t='ts '
 alias jp='expect ~/tmp/login.exp'
 alias du='dust'
-alias ps='procs'
 alias pn='pnpm'
 alias npm='pnpm'
-alias code='oathtool --totp --base32 "NBAY2XZKLJNQ7T2B"'
+alias ra='ranger'
+alias code='oathtool --totp --base32 "NBAY2XZKLJNQ7T2B"|pbcopy'
 alias add='bash /Users/king/code/scripts/add_code.sh'
 alias push=' git stash ;git pull origin develop --rebase;git push origin develop;git stash pop '
+#alias ra='pipx run --spec ranger-fm ranger'
+
+alias ls='lsd'
+alias l='ls -l'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
