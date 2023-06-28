@@ -11,6 +11,8 @@ i# Created by https://www.toptal.com/developers/gitignore/api/basic
 *.ini
 *.basic
 *.log
+*.pyc
+__pycache__
 
 clash*
 
